@@ -15,7 +15,7 @@ function PricingPage() {
                 </p>
             </div>
             <div className='relative mt-6'>
-                <p className='mx-auto max-w-2xl text-lg leading-0 text-white/60'>
+                <p className='mx-auto max-w-2xl text-lg leading-0 text-gray-500'>
                     We're 88% sure we have a plan to match your needs
                 </p>
                 <svg viewBox='0 0 1200 1024'
