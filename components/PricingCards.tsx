@@ -1,4 +1,8 @@
-import React from 'react'
+const tiers = [
+    {
+        name: ""
+    }
+]
 
 function PricingCards() {
   return (
