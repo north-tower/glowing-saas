@@ -3,9 +3,10 @@
 import { db } from '@/firebase';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { useSession } from 'next-auth/react'
+import Link from 'next/link';
 import React, { useState } from 'react'
 
-function CheckOutButton() {
+function CheckOutButton({ sub } : { sub: string }) {
   const { data: session} = useSession();
 
   const [loading,setLoading] = useState(false);
@@ -15,30 +16,9 @@ function CheckOutButton() {
 
     setLoading(true);
 
-    const docRef = await addDoc(
-      collection(db, "customers", session.user.id, "checkout_session"),
-      {
-        price: "price009",
-        success_url: window.location.origin,
-        cancel_url: window.location.origin,
-      }
-    );
 
-    return onSnapshot(docRef, snap => {
-      const data = snap.data();
-      const url = data?.url;
-      const error  = data?.error;
 
-      if(error) {
-        alert(`An error occured: ${error.message}`);
-        setLoading(false);
-      }
-
-      if (url) {
-        window.location.assign(url);
-        setLoading(false);
-      }
-    })
+  
 
   
 
@@ -46,12 +26,12 @@ function CheckOutButton() {
 
   }
   return (
-    <button onClick={() => createCheckOutSession()} className='mt-8 block rounded-md bg-indigo-600 
+    <Link href="/checkout" className='mt-8 block rounded-md bg-indigo-600 
     px-3.5 py-2 text-center text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500
     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-indigo-600 cursor-pointer disabled:opacity-80 
     disabled:bg-indigo-600/50 disabled:text-white disabled:cursor-default
-    '> Sign Up</button>
+    '> Sign Up</Link>
   )
 }
 
