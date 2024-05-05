@@ -10,7 +10,7 @@ import CreateChatButton from "./CreateChatButton"
 
 async function Header() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+
   
   
   return (

@@ -7,9 +7,7 @@ import { authOptions } from "@/auth";
 
 
 export default async function Home() {
-  const session = getServerSession(authOptions);
 
-  console.log(session);
 
   return (
     <main className="">
