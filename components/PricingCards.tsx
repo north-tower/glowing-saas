@@ -1,8 +1,4 @@
-const tiers = [
-    {
-        name: ""
-    }
-]
+
 
 function PricingCards() {
   return (
