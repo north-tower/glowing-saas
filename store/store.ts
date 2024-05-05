@@ -8,5 +8,5 @@ interface SubscriptionState {
 
 export const useSubscriptionStore = create<SubscriptionState>((set) => ({
     subscription: null,
-    setSubscription: (subscription) => set({ subscription }),
+    setSubscription: (subscription : Subscription | null) => set({ subscription }),
 }))
