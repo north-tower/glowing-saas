@@ -31,7 +31,7 @@ function CheckOutButton({ sub } : { sub: string }) {
     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-indigo-600 cursor-pointer disabled:opacity-80 
     disabled:bg-indigo-600/50 disabled:text-white disabled:cursor-default
-    '> Sign Up</Link>
+    '>{loading ? "Loading.." : "Sign Up"}</Link>
   )
 }
 

@@ -25,6 +25,14 @@ function CheckOut() {
         cancel_url: window.location.origin,
       }
     );
+    const docRef2 = await addDoc(
+      collection(db, "subscriptions", session.user.id, "sub"),
+      {
+        role: "Pro",
+        amount: "300",
+        product: "subscription",
+      }
+    );
   }
   return (
     <>
