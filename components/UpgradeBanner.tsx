@@ -9,8 +9,8 @@ function UpgradeBanner() {
     const subscription = useSubscriptionStore((state) => state.subscription);
     const isPro = subscription?.role === "pro";
     const router = useRouter()
-
-    if(subscription === undefined || isPro) return null;
+    console.log(subscription)
+    if(subscription === null || isPro) return null;
   return (
    <Button onClick={() => router.push("/register")} 
    className="w-full rounded-none bg-gradient-to-r from-[#777506] to-[#E935C1] text-center text-white px-5 py-2 hover:from-[#777506] hover:to-[#E935C1] hover:opacity-75
