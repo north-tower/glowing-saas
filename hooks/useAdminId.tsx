@@ -17,10 +17,9 @@ function useAdminId({ chatId }: {chatId: string}) {
         fetchAdminStatus();
     }, [chatId]);
   
+   
+    return adminId;
   
-    return (
-    <div>useAdminId</div>
-  )
 }
 
 export default useAdminId
