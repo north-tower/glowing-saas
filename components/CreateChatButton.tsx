@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useToast } from './ui/use-toast'
 import { useSubscriptionStore } from '@/store/store'
+import LoadingSpinner from './LoadingSpinner'
 
 
 function CreateChatButton({ isLarge}: { isLarge?: boolean}) {
@@ -21,6 +22,15 @@ function CreateChatButton({ isLarge}: { isLarge?: boolean}) {
     const createNewChat = async () => {
         router.push(`/chat/abc`);
     }
+
+  if (isLarge)
+    return(
+      <div>
+        <Button variant={"default"} onClick={createNewChat}>
+          {loading ? <LoadingSpinner /> : "Create a New Chat"}
+        </Button>
+      </div>
+  )
   return (
     <Button variant={"ghost"}>
         <Button onClick={createNewChat} variant={"ghost"}>
