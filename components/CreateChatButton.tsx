@@ -70,16 +70,13 @@ function CreateChatButton({ isLarge}: { isLarge?: boolean}) {
       </div>
   )
   return (
-    <Button variant={"ghost"}>
+
         <Button onClick={createNewChat} variant={"ghost"}>
         <MessageSquarePlusIcon />
         </Button>
-    </Button>
+  
   )
 }
 
 export default CreateChatButton
 
-function uuidv4() {
-  throw new Error('Function not implemented.')
-}
