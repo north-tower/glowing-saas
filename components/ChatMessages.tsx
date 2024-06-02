@@ -1,3 +1,5 @@
+'use client'
+
 import { Message, sortedMessagesRef } from '@/lib/converters/Message';
 import { MessageCircleIcon } from 'lucide-react';
 import { Session } from 'next-auth';
@@ -27,11 +29,11 @@ function ChatMessages({
   return (
     <div>
         {!loading && messages?.length === 0 && (
-            <div className='flex flex-col justify-center items-center p-20
+            <div className='flex flex-col justify-center  text-center items-center p-20
             rounded-xl space-y-2 bg-indigo-400 text-white font-extralight'>
                 <MessageCircleIcon className='h-10 w-10' />
                 <h2>
-                    <span className='font-bold'>Invite a friend</span>& {" "}
+                    <span className='font-bold'>Invite a friend</span> & {" "}
                     <span className='font-bold'>
                         Send yout first message
                     </span>{" "}
