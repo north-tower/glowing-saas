@@ -6,11 +6,18 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link';
 import React, { useState } from 'react'
 import LoadingSpinner from './LoadingSpinner';
+import { useSubscriptionStore } from '@/store/store';
 
 function CheckOutButton({ sub } : { sub: string }) {
   const { data: session} = useSession();
 
   const [loading,setLoading] = useState(false);
+
+  const subscription = useSubscriptionStore((state) => state.subscription)
+
+  const isLoadingSubscription = subscription === undefined;
+
+  const isSubscribed = subscription?.status === "active" && subscription?.role === "pro";
 
   const createCheckOutSession = async () => {
     if(!session?.user.id) return;

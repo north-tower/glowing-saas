@@ -52,7 +52,7 @@ function UserButton({ session }: { session: Session | null}) {
                     </>
                 )}
                
-                <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
+                <DropdownMenuItem className="text-center" onClick={() => signOut()}>Sign Out</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
 
