@@ -20,6 +20,14 @@ function CreateChatButton({ isLarge}: { isLarge?: boolean}) {
     
     
     const createNewChat = async () => {
+      if (!session?.user.id) return;
+
+      setLoading(true);
+      toast({
+        title: "Creating New Chat...",
+        description: "Hold tight while we create your new chat...",
+        duration: 3000,
+      })
         router.push(`/chat/abc`);
     }
 

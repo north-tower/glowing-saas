@@ -21,7 +21,7 @@ const subscriptionConverter: FirestoreDataConverter<Subscription> = {
             role: data.role,
             price: data.price,
             amount: data.amount,
-
+            status: null
         }
 
         return sub;
