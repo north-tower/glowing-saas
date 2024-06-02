@@ -1,3 +1,5 @@
+import ChatList from "@/components/ChatList";
+
 type Props = {
     params: {};
     searchParams: {
@@ -6,7 +8,13 @@ type Props = {
 }
 function ChatsPage({ searchParams: { error }}: Props) {
   return (
-    <div>ChatsPage</div>
+    <div>
+      <h1>ChatsPage
+        </h1>
+
+    <ChatList />
+
+    </div>
   )
 }
 
