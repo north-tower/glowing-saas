@@ -9,7 +9,7 @@ type Props = {
 function ChatsPage({ searchParams: { error }}: Props) {
   return (
     <div>
-      <h1>ChatsPage
+      <h1>Chats
         </h1>
 
     <ChatList />

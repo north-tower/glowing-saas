@@ -24,7 +24,9 @@ function UserButton({ session }: { session: Session | null}) {
     <div>
         <DropdownMenu>
             <DropdownMenuTrigger>
-                <UserAvatar name={session.user?.name} image={session.user?.image} />
+                <UserAvatar name={session.user?.name} 
+                
+                image={session.user?.image} />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
