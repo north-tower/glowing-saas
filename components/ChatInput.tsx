@@ -7,8 +7,12 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod";
 import { Button } from "./ui/button"
-import { User, messagesRef } from "@/lib/converters/Message"
-import { addDoc, serverTimestamp } from "firebase/firestore"
+import { User, limitedMessagesRef, messagesRef } from "@/lib/converters/Message"
+import { addDoc, getDocs, serverTimestamp } from "firebase/firestore"
+import { useSubscriptionStore } from "@/store/store"
+import { useRouter } from "next/navigation"
+import { useToast } from "./ui/use-toast"
+import { ToastAction } from "./ui/toast"
 
 const formSchema = z.object({
     input: z.string().max(1000),
@@ -16,6 +20,9 @@ const formSchema = z.object({
 
 function ChatInput({chatId}: {chatId: string}) {
     const { data: session } = useSession();
+    const router = useRouter();
+    const { toast } =  useToast();
+    const subscription = useSubscriptionStore((state) => state.subscription)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -24,6 +31,8 @@ function ChatInput({chatId}: {chatId: string}) {
         },
     });
 
+
+
     async function onSubmit(values: z.infer<typeof formSchema>){
         if (values.input.length === 0){
             return;
@@ -31,6 +40,27 @@ function ChatInput({chatId}: {chatId: string}) {
 
         if (!session?.user){
             return;
+        }
+
+        const messages = (await getDocs(limitedMessagesRef(chatId))).docs.map(
+            (doc) => doc.data()
+        ).length;
+
+        const isPro = subscription?.role === "pro" && subscription.status ===
+        "active";
+
+        if (!isPro && messages >= 20){
+            toast({
+                title: "Free plan limit exceeded",
+                description: "Yove exceeded the Free plan limit of 20 messages per chat.Upgrade to PRO for unlimited chat messages",
+                variant: "destructive",
+                action : (
+                    <ToastAction altText="Upgrade"
+                    onClick={() => router.push("/register")}>
+                        Upgrade to Pro
+                    </ToastAction>
+                )
+            })
         }
 
         const userToStore: User = {
@@ -49,6 +79,8 @@ function ChatInput({chatId}: {chatId: string}) {
         form.reset();
 
     }
+
+    
 
 
   return (
