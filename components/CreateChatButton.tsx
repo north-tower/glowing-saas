@@ -8,7 +8,9 @@ import { useSession } from 'next-auth/react'
 import { useToast } from './ui/use-toast'
 import { useSubscriptionStore } from '@/store/store'
 import LoadingSpinner from './LoadingSpinner'
-
+import { serverTimestamp, setDoc } from 'firebase/firestore'
+import { addChatRef } from '@/lib/converters/ChatMembers'
+import { v4 as uuidv5} from 'uuid';
 
 function CreateChatButton({ isLarge}: { isLarge?: boolean}) {
   const { data: session } = useSession();
@@ -27,6 +29,20 @@ function CreateChatButton({ isLarge}: { isLarge?: boolean}) {
         title: "Creating New Chat...",
         description: "Hold tight while we create your new chat...",
         duration: 3000,
+      });
+
+
+      const chatId = uuidv5()
+
+      await setDoc(addChatRef(chatId, session.user.id), {
+        userId: session.user.id!,
+        email: session.user.email,
+        timestamp: serverTimestamp()
+        isAdmin: true,
+        chatId: chatId.
+        image: session.user.image || ""
+
+
       })
         router.push(`/chat/abc`);
     }
@@ -49,3 +65,7 @@ function CreateChatButton({ isLarge}: { isLarge?: boolean}) {
 }
 
 export default CreateChatButton
+
+function uuidv4() {
+  throw new Error('Function not implemented.')
+}
