@@ -1,9 +1,11 @@
-import React from 'react'
+import { authOptions } from "@/auth"
+import { getServerSession } from "next-auth"
 
-function ChatPages() {
+async function ChatPage() {
+  const session = await getServerSession(authOptions)
   return (
-    <div>ChatPages</div>
+    <div>ChatPage</div>
   )
 }
 
-export default ChatPages
+export default ChatPage
