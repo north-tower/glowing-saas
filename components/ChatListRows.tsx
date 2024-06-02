@@ -1,8 +1,11 @@
+'use client'
+
 import { ChatMembers, chatMembersCollectionGroupRef } from '@/lib/converters/ChatMembers'
 import { MessageSquare } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useCollectionData } from "react-firebase-hooks/firestore"
 import CreateChatButton from './CreateChatButton';
+import ChatListRow from './ChatListRow';
 
 
 function ChatListRows({ initialChats }: {
@@ -31,7 +34,13 @@ function ChatListRows({ initialChats }: {
     
         )
 
-        return <div>ChatListRows</div>
+        return (
+            <div className=''>
+                {members?.map((member, i) => (
+                    <ChatListRow key={member.chatId} chatId={member.chatId} />
+                ))}
+            </div>
+        )
 }
   
 
